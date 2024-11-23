@@ -3,9 +3,9 @@
 ###对训练集，测试集进行对比。
 ###对分析样本，验证样本，SEER 12 剩余样本 进行对比。
 rm(list = ls())
-load("~/JMZ/SEER/lung/1data/SEER_lung_spm4class.rdata")
-load("~/JMZ/SEER/lung/1data/SEER_lung_spm4class_timevalid.rdata")
-load("~/JMZ/SEER/lung/1data/SEER_lung_spm4class_12.rdata")
+load("./SEER/lung/1data/SEER_lung_spm4class.rdata")
+load("./SEER/lung/1data/SEER_lung_spm4class_timevalid.rdata")
+load("./SEER/lung/1data/SEER_lung_spm4class_12.rdata")
 
 ###mp2的筛选可知，distant的样本量保存最多。
 ###m1 和 stage 的性能基本一致。
@@ -112,12 +112,12 @@ result_in_out = datacompare_f(d_in_out)
 result_in_valid = datacompare_f(d_in_valid)
 result_in_12 = datacompare_f(d_in_12)
 
-path1 = "~/R/SEER/lung/1data/"
+path1 = "./SEER/lung/1data/"
 if (!dir.exists(path1)) dir.create(path1)
 save(mp3_origin,mp3_valid, mp3_out, mp3_12,
      traindata,testdata, file = paste0(path1, "SEER_lung_spm4task.rdata"))
 
-path2 = "~/R/SEER/lung/3result/01datacompare/"
+path2 = "./SEER/lung/3result/01datacompare/"
 if (!dir.exists(path2)) dir.create(path2)
 openxlsx::write.xlsx(list(result_train_test, result_in_out, result_in_valid, result_in_12),
                      file = paste0(path2, "base_result.xlsx"))
